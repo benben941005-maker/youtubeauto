@@ -21,7 +21,9 @@ cat_automation/
     ├── footage/         ← Cat footage clips
     └── videos/          ← Final Shorts ready to upload
 ```
-
+> **Recommended: log in via OpenClaw OAuth** — instead of pasting an API key, run:
+> ```bash
+> openclaw models auth login
 ---
 
 ## 🔑 Step 1: Get All API Keys
