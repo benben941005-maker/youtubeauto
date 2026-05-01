@@ -26,25 +26,19 @@ cat_automation/
 
 ## 🔑 Step 1: Get All API Keys
 
-### 1. Claude API Key (Anthropic)
-- Go to: https://console.anthropic.com
-- Sign up → API Keys → Create Key
-- Free tier: $5 in trial credit
-- Add to `config.py`: `CLAUDE_API_KEY = "sk-ant-..."`
-
-### 2. ElevenLabs API Key (AI Voiceover)
+### 1. ElevenLabs API Key (AI Voiceover)
 - Go to: https://elevenlabs.io
 - Sign up for a free account → Profile → API Key
 - Free tier: 10,000 characters per month (about 10 videos)
 - Add to `config.py`: `ELEVENLABS_API_KEY = "..."`
 
-### 3. Pexels API Key (Free Stock Footage)
+### 2. Pexels API Key (Free Stock Footage)
 - Go to: https://www.pexels.com/api
 - Sign up → Get Started → Request a free key
 - Completely free, no usage limits
 - Add to `config.py`: `PEXELS_API_KEY = "..."`
 
-### 4. YouTube Data API (Video Uploads)
+### 3. YouTube Data API (Video Uploads)
 This step has a few more parts — follow along:
 
 **Step A: Create a Google Cloud Project**
@@ -140,66 +134,3 @@ python main.py --count 10
 ```
 
 ---
-
-## 💰 Affiliate Setup
-
-Add your affiliate link to `config.py`:
-```python
-AFFILIATE_LINK = "https://shopee.sg/your-affiliate-link"
-```
-
-**How to sign up for Shopee/Lazada Affiliate programs:**
-- Shopee: https://affiliate.shopee.sg → Sign up → Get your tracking link
-- Lazada: https://affiliate.lazada.com.sg → Same process
-- Recommended products: cat litter, cat toys, cat food, cat trees
-
----
-
-## ⏰ Run Daily Automatically (Windows Task Scheduler)
-
-```bash
-# In Windows Task Scheduler, set up a daily run:
-# Action → Program: python
-# Arguments: C:\path\to\cat_automation\main.py --count 2
-# Trigger: Daily at 09:00
-```
-
----
-
-## 📊 Expected Revenue Timeline
-
-| Month | Videos | Expected Subs | Income Source |
-|-------|--------|---------------|---------------|
-| Month 1 | 60 | 100–300 | Affiliate kicks in |
-| Month 2 | 120 | 300–800 | Affiliate $50–200 |
-| Month 3 | 180 | 800–2,000 | Apply for YPP |
-| Month 4+ | 240+ | 1,000+ | AdSense + Affiliate |
-
----
-
-## ❓ FAQ
-
-**Q: FFmpeg not found?**
-A: On Codespaces: `sudo apt-get install -y ffmpeg`. On Windows: `winget install ffmpeg`, then restart your terminal.
-
-**Q: OAuth callback fails / "redirect_uri_mismatch" error?**
-A: Three things must match exactly:
-   1. The URL listed in Google Cloud Console → Credentials → Authorized redirect URIs
-   2. The `YT_REDIRECT_URI` value in `config.py`
-   3. The actual forwarded port URL of your codespace (port 8000 must be **Public**)
-
-**Q: My Codespace URL changed and OAuth stopped working?**
-A: Update both `config.py` (`YT_REDIRECT_URI`) and the Authorized redirect URI in Google Cloud Console with the new URL.
-
-**Q: ElevenLabs free tier used up?**
-A: Upgrade to the $5/month Starter plan (110,000 characters).
-
-**Q: YouTube upload failing?**
-A: Delete `youtube_token.pickle` and re-authorize.
-
-**Q: Can the stock footage be used commercially?**
-A: Yes — Pexels videos are free for commercial use, no attribution required.
-
----
-
-*Built with Claude + ElevenLabs + Pexels + FFmpeg + YouTube API*
