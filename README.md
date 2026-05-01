@@ -28,19 +28,13 @@ cat_automation/
 
 ## 🔑 Step 1: Get All API Keys
 
-### 1. ElevenLabs API Key (AI Voiceover)
-- Go to: https://elevenlabs.io
-- Sign up for a free account → Profile → API Key
-- Free tier: 10,000 characters per month (about 10 videos)
-- Add to `config.py`: `ELEVENLABS_API_KEY = "..."`
-
-### 2. Pexels API Key (Free Stock Footage)
+### 1. Pexels API Key (Free Stock Footage)
 - Go to: https://www.pexels.com/api
 - Sign up → Get Started → Request a free key
 - Completely free, no usage limits
 - Add to `config.py`: `PEXELS_API_KEY = "..."`
 
-### 3. YouTube Data API (Video Uploads)
+### 2. YouTube Data API (Video Uploads)
 This step has a few more parts — follow along:
 
 **Step A: Create a Google Cloud Project**
