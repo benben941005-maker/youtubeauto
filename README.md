@@ -58,16 +58,61 @@ This step has a few more parts — follow along:
 **Step C: Create OAuth Credentials**
 1. APIs & Services → Credentials
 2. Create Credentials → OAuth client ID
-3. Application type: **Desktop app**
-4. Download the JSON file
-5. Rename it to `client_secret.json`
-6. Place it in the project root directory
+3. Application type: **Web application**
+4. Under **Authorized redirect URIs**, add the URL you'll redirect back to. **For Codespaces, see the section below first** — you'll need your codespace's forwarded URL here.
+   - Local example: `http://localhost:8000/oauth2callback`
+   - Codespaces example: `https://<your-codespace-name>-8000.app.github.dev/oauth2callback`
+5. Click **Create**, then download the JSON file
+6. Rename it to `client_secret.json` and place it in the project root directory
+7. In `config.py`, set `YT_REDIRECT_URI` to the **same URL** you authorized above
+
+> When you first run the upload step, the consent screen opens in your browser. After you click **Allow**, Google redirects back to your callback URL and the app saves the token locally.
+
+---
+
+## 💻 Running in GitHub Codespaces
+
+This project is set up to run in **GitHub Codespaces** out of the box.
+
+### Setup
+```bash
+# Inside the Codespace terminal:
+pip install -r requirements.txt
+
+# FFmpeg (Codespaces are Ubuntu-based)
+sudo apt-get update && sudo apt-get install -y ffmpeg
+```
+
+### Important: forward port 8000 publicly
+The OAuth callback needs Google's servers to reach your codespace, so port 8000 must be **public**:
+
+1. Run any command that starts the callback server (or just `python main.py --skip-upload` once)
+2. In VS Code's bottom panel, open the **Ports** tab
+3. Find port `8000` → right-click → **Port Visibility → Public**
+4. Copy the forwarded URL — it looks like `https://<codespace-name>-8000.app.github.dev`
+
+### Configure the redirect URI
+1. In Google Cloud Console → Credentials → your OAuth client → **Authorized redirect URIs**, add:
+   `https://<your-codespace-name>-8000.app.github.dev/oauth2callback`
+2. In `config.py`, set the same URL:
+   ```python
+   YT_REDIRECT_URI = "https://<your-codespace-name>-8000.app.github.dev/oauth2callback"
+   ```
+
+> ⚠️ Codespace URLs change if you delete and recreate the codespace. If that happens, update both Google Cloud Console **and** `config.py` with the new URL.
 
 ---
 
 ## 🚀 Step 2: Install and Run
 
-### Windows Install
+### Codespaces Install (recommended for students)
+```bash
+pip install -r requirements.txt
+sudo apt-get update && sudo apt-get install -y ffmpeg
+```
+Then follow the **Running in GitHub Codespaces** section above to forward port 8000 and set your redirect URI.
+
+### Windows Install (local)
 ```bash
 # 1. Double-click setup.bat
 # Or from the command line:
@@ -95,3 +140,66 @@ python main.py --count 10
 ```
 
 ---
+
+## 💰 Affiliate Setup
+
+Add your affiliate link to `config.py`:
+```python
+AFFILIATE_LINK = "https://shopee.sg/your-affiliate-link"
+```
+
+**How to sign up for Shopee/Lazada Affiliate programs:**
+- Shopee: https://affiliate.shopee.sg → Sign up → Get your tracking link
+- Lazada: https://affiliate.lazada.com.sg → Same process
+- Recommended products: cat litter, cat toys, cat food, cat trees
+
+---
+
+## ⏰ Run Daily Automatically (Windows Task Scheduler)
+
+```bash
+# In Windows Task Scheduler, set up a daily run:
+# Action → Program: python
+# Arguments: C:\path\to\cat_automation\main.py --count 2
+# Trigger: Daily at 09:00
+```
+
+---
+
+## 📊 Expected Revenue Timeline
+
+| Month | Videos | Expected Subs | Income Source |
+|-------|--------|---------------|---------------|
+| Month 1 | 60 | 100–300 | Affiliate kicks in |
+| Month 2 | 120 | 300–800 | Affiliate $50–200 |
+| Month 3 | 180 | 800–2,000 | Apply for YPP |
+| Month 4+ | 240+ | 1,000+ | AdSense + Affiliate |
+
+---
+
+## ❓ FAQ
+
+**Q: FFmpeg not found?**
+A: On Codespaces: `sudo apt-get install -y ffmpeg`. On Windows: `winget install ffmpeg`, then restart your terminal.
+
+**Q: OAuth callback fails / "redirect_uri_mismatch" error?**
+A: Three things must match exactly:
+   1. The URL listed in Google Cloud Console → Credentials → Authorized redirect URIs
+   2. The `YT_REDIRECT_URI` value in `config.py`
+   3. The actual forwarded port URL of your codespace (port 8000 must be **Public**)
+
+**Q: My Codespace URL changed and OAuth stopped working?**
+A: Update both `config.py` (`YT_REDIRECT_URI`) and the Authorized redirect URI in Google Cloud Console with the new URL.
+
+**Q: ElevenLabs free tier used up?**
+A: Upgrade to the $5/month Starter plan (110,000 characters).
+
+**Q: YouTube upload failing?**
+A: Delete `youtube_token.pickle` and re-authorize.
+
+**Q: Can the stock footage be used commercially?**
+A: Yes — Pexels videos are free for commercial use, no attribution required.
+
+---
+
+*Built with Claude + ElevenLabs + Pexels + FFmpeg + YouTube API*
