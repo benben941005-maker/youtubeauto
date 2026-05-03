@@ -21,9 +21,12 @@ cat_automation/
     ├── footage/         ← Cat footage clips
     └── videos/          ← Final Shorts ready to upload
 ```
+
 > **Recommended: log in via OpenClaw OAuth** — instead of pasting an API key, run:
 > ```bash
 > openclaw models auth login
+> ```
+
 ---
 
 ## 🔑 Step 1: Get All API Keys
@@ -102,6 +105,8 @@ sudo apt-get update && sudo apt-get install -y ffmpeg
 ```
 Then follow the **Running in GitHub Codespaces** section above to forward port 8000 and set your redirect URI.
 
+---
+
 ## 💬 Run It from Telegram (fully chat-driven workflow)
 
 Once your OpenClaw + Telegram bot is paired, the entire workflow happens in chat. You paste a GitHub link, the bot patches it for Codespaces, and from then on you just say **"make 1 short"** and approve a title + script — the bot handles voice, footage, video assembly, and YouTube upload.
@@ -163,9 +168,9 @@ After bootstrap is done, paste this so the bot knows how to behave on every shor
 ```
 You:   make 1 short
 Bot:   Here are 3 title options:
-       1. 3 Cat Litter Mistakes You're Making 😱  
-       2. Why Your Cat Ignores That Expensive Toy 
-       3. The Truth About Cat Grooming 
+       1. 3 Cat Litter Mistakes You're Making 😱
+       2. Why Your Cat Ignores That Expensive Toy
+       3. The Truth About Cat Grooming
 You:   title 2
 Bot:   Script for title 2:
        Hook: Did you know most cat owners waste money on toys cats hate?
@@ -202,10 +207,12 @@ Bot:   ✅ voice generated
 - Treat any client secret or API key that passed through chat as **exposed** — rotate it in Google Cloud / your provider after setup.
 
 ---
-## ❓ FAQ
 
+## ❓ FAQ
 
 **Q: Telegram pairing fails with `Cannot find module 'grammy'`?**
 A: OpenClaw's bundled Telegram channel needs the `grammy` Node.js library. Install it globally:
 ```bash
 sudo npm install -g grammy
+```
+Then re-run `openclaw gateway` (or whichever command you were running). Pairing approvals already saved to `openclaw.json` are kept — you just need `grammy` available so the Telegram channel can actually start.
