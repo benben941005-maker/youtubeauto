@@ -102,31 +102,6 @@ sudo apt-get update && sudo apt-get install -y ffmpeg
 ```
 Then follow the **Running in GitHub Codespaces** section above to forward port 8000 and set your redirect URI.
 
-### Windows Install (local)
-```bash
-# 1. Double-click setup.bat
-# Or from the command line:
-pip install -r requirements.txt
-
-# Install FFmpeg (pick one method)
-winget install ffmpeg
-# Or install manually from https://ffmpeg.org/download.html
-```
-
-### Run Order (test first — recommended)
-
-```bash
-# Step 1: Generate scripts only (free — test before spending money)
-python main.py --scripts-only
-
-# Step 2: Generate videos but don't upload (check quality)
-python main.py --skip-upload --count 3
-
-# Step 3: Full pipeline, 3 videos
-python main.py --count 3
-
-# Step 4: Real batch run, 10 videos
-python main.py --count 10
 ```
 ## 💬 Run It from Telegram (fully chat-driven workflow)
 
