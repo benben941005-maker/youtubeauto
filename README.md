@@ -102,7 +102,6 @@ sudo apt-get update && sudo apt-get install -y ffmpeg
 ```
 Then follow the **Running in GitHub Codespaces** section above to forward port 8000 and set your redirect URI.
 
-```
 ## 💬 Run It from Telegram (fully chat-driven workflow)
 
 Once your OpenClaw + Telegram bot is paired, the entire workflow happens in chat. You paste a GitHub link, the bot patches it for Codespaces, and from then on you just say **"make 1 short"** and approve a title + script — the bot handles voice, footage, video assembly, and YouTube upload.
