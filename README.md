@@ -189,9 +189,9 @@ After bootstrap is done, paste this so the bot knows how to behave on every shor
 ```
 You:   make 1 short
 Bot:   Here are 3 title options:
-       1. 3 Cat Litter Mistakes You're Making 😱  /  3个你在犯的猫砂错误
-       2. Why Your Cat Ignores That Expensive Toy  /  为什么猫咪不爱贵玩具
-       3. The Truth About Cat Grooming  /  关于梳毛的真相
+       1. 3 Cat Litter Mistakes You're Making 😱  
+       2. Why Your Cat Ignores That Expensive Toy 
+       3. The Truth About Cat Grooming 
 You:   title 2
 Bot:   Script for title 2:
        Hook: Did you know most cat owners waste money on toys cats hate?
