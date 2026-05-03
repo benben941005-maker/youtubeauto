@@ -209,5 +209,3 @@ Bot:   ✅ voice generated
 A: OpenClaw's bundled Telegram channel needs the `grammy` Node.js library. Install it globally:
 ```bash
 sudo npm install -g grammy
-
----
