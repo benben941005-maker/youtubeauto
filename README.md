@@ -203,4 +203,12 @@ Bot:   ✅ voice generated
 - Treat any client secret or API key that passed through chat as **exposed** — rotate it in Google Cloud / your provider after setup.
 
 ---
+## ❓ FAQ
 
+
+**Q: Telegram pairing fails with `Cannot find module 'grammy'`?**
+A: OpenClaw's bundled Telegram channel needs the `grammy` Node.js library. Install it globally:
+```bash
+sudo npm install -g grammy
+
+---
